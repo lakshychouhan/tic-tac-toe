@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video id="backgroundVideo" autoplay loop muted plays-inline class="back-video">
+        <source src="sunset.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="container">
+        <h1>Tic-Tac-Toe</h1>
+        <form class="options">
+            <input class="input-btn" type="radio" id="valueIs-1" name="valueIs-radio" checked="" value="player-vs-player">
+            <label class="neon-btn" for="valueIs-1">
+                <span class="span"></span>
+                <span class="txt">Player vs Player</span>
+            </label>
+
+            <input class="input-btn" type="radio" id="valueIs-2" name="valueIs-radio" value="player-vs-ai">
+            <label class="neon-btn" for="valueIs-2">
+                <span class="span"></span>
+                <span class="txt">Player vs AI</span>
+            </label>
+        </form>
+        <div id="game-board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+       <!--<button id="reset-button">Reset</button> -->
+       <button id="reset-button">
+        RESET
+      </button>
+      
+        <p id="message"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
