@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = document.getElementById('message');
     const gameModeButtons = document.getElementsByName('valueIs-radio');
     let board = Array(9).fill(null);
-    let currentPlayer = 'X';
+    let currentPlayer = 'Player 1';
     let isGameActive = true;
     let gameMode = 'player-vs-player';
 
@@ -26,10 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        board[index] = currentPlayer;
-        event.target.textContent = currentPlayer;
+        board[index] = currentPlayer === 'Player 1' ? 'X' : 'O';
+        event.target.textContent = board[index];
         if (checkWin()) {
-            message.textContent = `${currentPlayer} wins!`;
+            if (gameMode === 'player-vs-ai' && currentPlayer === 'Player 1') {
+                message.textContent = 'You win!';
+            } else {
+                message.textContent = `${currentPlayer} wins!`;
+            }
             isGameActive = false;
             return;
         }
@@ -40,15 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-        if (gameMode === 'player-vs-ai' && currentPlayer === 'O') {
-            makeAiMove();
+        currentPlayer = currentPlayer === 'Player 1' ? 'Player 2' : 'Player 1';
+        if (gameMode === 'player-vs-ai' && currentPlayer === 'Player 2') {
+            makeAiMove(); // Immediate AI move
+        } else {
+            updateTurnMessage(); // Update turn message for player vs. player mode
         }
     }
 
     function checkWin() {
         return winningCombinations.some(combination => {
-            return combination.every(index => board[index] === currentPlayer);
+            return combination.every(index => board[index] === (currentPlayer === 'Player 1' ? 'X' : 'O'));
         });
     }
 
@@ -59,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cells[aiMove].textContent = 'O';
 
         if (checkWin()) {
-            message.textContent = 'O wins!';
+            message.textContent = 'AI wins!';
             isGameActive = false;
             return;
         }
@@ -70,15 +76,23 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        currentPlayer = 'X';
+        currentPlayer = 'Player 1';
+        updateTurnMessage(); // Update turn message after AI move
     }
 
     function resetGame() {
         board = Array(9).fill(null);
         isGameActive = true;
-        currentPlayer = 'X';
+        currentPlayer = 'Player 1';
         cells.forEach(cell => cell.textContent = '');
         message.textContent = '';
+        updateTurnMessage(); // Update turn message after reset
+    }
+
+    function updateTurnMessage() {
+        if (gameMode === 'player-vs-player' && isGameActive) {
+            message.textContent = `It's ${currentPlayer}'s turn`;
+        }
     }
 
     gameModeButtons.forEach(button => {
@@ -92,4 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cells.forEach(cell => cell.addEventListener('click', handleClick));
     resetButton.addEventListener('click', resetGame);
+
+    updateTurnMessage(); // Initial turn message update
 });

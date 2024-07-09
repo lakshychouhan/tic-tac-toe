@@ -165,7 +165,7 @@ h1 {
   gap: 10px;
   margin: 20px auto;
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
 }
 
 .cell {
@@ -177,8 +177,8 @@ h1 {
   border: 2px solid #4090b5;
   box-shadow: 0 0 10px rgba(64, 144, 181, 0.5);
   cursor: pointer;
-  aspect-ratio: 1 / 1;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 1 / 1;
 }
 
 .cell:hover {
@@ -202,11 +202,10 @@ button, button::after {
 }
 
 p {
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-top: 20px;
 }
-
-.back-video {
+.back-video{
   position: absolute;
   right: 0;
   bottom: 0;
@@ -215,15 +214,15 @@ p {
 
 @media (min-aspect-ratio: 16/9) {
   #backgroundVideo {
-    width: 100%;
-    height: auto;
+      width: 100%;
+      height: auto;
   }
 }
 
 @media (max-aspect-ratio: 16/9) {
   #backgroundVideo {
-    width: auto;
-    height: 100%;
+      width: auto;
+      height: 100%;
   }
 }
 
