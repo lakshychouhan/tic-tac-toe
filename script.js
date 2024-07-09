@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.target.textContent = board[index];
         if (checkWin()) {
             if (gameMode === 'player-vs-ai' && currentPlayer === 'Player 1') {
-                message.textContent = 'You win!';
+                message.textContent = 'You won!';
             } else {
                 message.textContent = `${currentPlayer} wins!`;
             }
